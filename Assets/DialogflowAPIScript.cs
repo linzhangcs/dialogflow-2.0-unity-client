@@ -58,12 +58,11 @@ public class DialogflowAPIScript : MonoBehaviour {
             string result = System.Text.Encoding.UTF8.GetString(resultbyte);
             ResponseBody content = (ResponseBody)JsonUtility.FromJson<ResponseBody>(result);
             Debug.Log(content.queryResult.fulfillmentText);
-            
         }
     }
+
     IEnumerator GetAgent(String AccessToken)
     {
-
         UnityWebRequest www = UnityWebRequest.Get("https://dialogflow.googleapis.com/v2/projects/test-67717/agent");
        
         www.SetRequestHeader("Authorization", "Bearer " + AccessToken);

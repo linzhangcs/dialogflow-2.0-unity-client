@@ -17,7 +17,13 @@ namespace JsonData
     public class RequestBody
     {
         public QueryInput queryInput;
+        /*  
+            string (bytes format)
+            Optional. The natural language speech audio to be processed. This field should be populated iff queryInput is set to an input audio config. A single request can contain up to 1 minute of speech audio data.
+            A base64-encoded string.
+        */
 
+        public string inputAudio;
     }
 
     /*
@@ -45,7 +51,7 @@ namespace JsonData
     public class QueryInput
     {
         public TextInput text;
-        //public InputAudioConfig audioConfig;
+        public InputAudioConfig audioConfig;
     }
     /*
      * InputAudioConfig
