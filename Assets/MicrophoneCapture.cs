@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using JsonData;
 using System;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class MicrophoneCapture : MonoBehaviour
     //Public variable for saving recorded sound clip
     public AudioClip recordedClip;
     private float[] samples;
-
+    private byte[] bytes;
     //dialogflow 
     private AudioSource audioSource;
     private readonly object thisLock = new object();
@@ -134,25 +135,27 @@ public class MicrophoneCapture : MonoBehaviour
         if (recordingActive)
         {
 
-            float[] samples = null;
+            //float[] samples = null;
 
             lock (thisLock)
             {
                 if (recordingActive)
                 {
                     StopRecording();
-                    samples = new float[audioSource.clip.samples];
-                    audioSource.clip.GetData(samples, 0);
+                    //samples = new float[audioSource.clip.samples];
+
+                    //audioSource.clip.GetData(samples, 0);
+                    bytes = WavUtility.FromAudioClip(audioSource.clip);
                     audioSource.Play();
-                    Debug.Log("This is the audiosource clip length: "+ audioSource.clip.length);
+                    Debug.Log("This is the audiosource clip length: "+ bytes.Length);
                     audioSource = null;
                 }
             }
 
-
             //new Thread(StartVoiceRequest).Start(samples);
             StartCoroutine(StartVoiceRequest("https://dialogflow.googleapis.com/v2/projects/test-67717/agent/sessions/34563:detectIntent",
-                                             "token", samples));
+                                             "ya29.c.ElpvBmZHK1F7pwhaNzKBmYTvNFeluNS2cZbnOqpYLk3SrpoRqJX8L40nEvVb0hVMZigcHSVSKUBA2rVBwgsb3KrGuIQ2tpFDORok_JUy2aHwj83P7fyy91oqJOI", 
+                                             bytes));
         }
     }
 
@@ -164,21 +167,31 @@ public class MicrophoneCapture : MonoBehaviour
 
     IEnumerator StartVoiceRequest(String url, String AccessToken, object parameter)
     {
-        float[] samples = (float[])parameter;
+        byte[] samples = (byte[])parameter;
+        //TODO: convert float[] samples into bytes[]
+        //byte[] sampleByte = new byte[samples.Length * 4];
+        //Buffer.BlockCopy(samples, 0, sampleByte, 0, sampleByte.Length);
+
+        string sampleString = System.Convert.ToBase64String(samples);
         if (samples != null)
         {
             UnityWebRequest postRequest = new UnityWebRequest(url, "POST");
             RequestBody requestBody = new RequestBody();
             requestBody.queryInput = new QueryInput();
-            requestBody.queryInput.text = new TextInput();
-            requestBody.queryInput.text.text = "hello";
-            requestBody.queryInput.text.languageCode = "en";
+            //requestBody.queryInput.text = new TextInput();
+            //requestBody.queryInput.text.text = "hello";
+            //requestBody.queryInput.text.languageCode = "en";
+            requestBody.queryInput.audioConfig = new InputAudioConfig();
+            requestBody.queryInput.audioConfig.audioEncoding = AudioEncoding.AUDIO_ENCODING_UNSPECIFIED;
+            //TODO: check if that the sample rate hertz
+            requestBody.queryInput.audioConfig.sampleRateHertz = 16000;
+            requestBody.queryInput.audioConfig.languageCode = "en";
+            requestBody.inputAudio = sampleString;
 
             string jsonRequestBody = JsonUtility.ToJson(requestBody, true);
             Debug.Log(jsonRequestBody);
 
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonRequestBody);
-            //Debug.Log(bodyRaw);
             postRequest.SetRequestHeader("Authorization", "Bearer " + AccessToken);
             postRequest.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
             postRequest.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
@@ -193,7 +206,7 @@ public class MicrophoneCapture : MonoBehaviour
             }
             else
             {
-                // Show results as text
+    
                 Debug.Log("Response: " + postRequest.downloadHandler.text);
 
                 // Or retrieve results as binary data

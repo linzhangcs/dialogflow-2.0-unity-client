@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\DialogflowAPIScript.cs" />
     <Compile Include="Assets\MicrophoneCapture.cs" />
+    <Compile Include="Assets\WavUtility.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/linzhang/Documents/ITP/Fall2018/OSS/dialogflowproject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

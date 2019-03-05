@@ -27,9 +27,9 @@ public class DialogflowAPIScript : MonoBehaviour {
         UnityWebRequest postRequest = new UnityWebRequest(url, "POST");
         RequestBody requestBody = new RequestBody();
         requestBody.queryInput = new QueryInput();
-        requestBody.queryInput.text = new TextInput();
-        requestBody.queryInput.text.text = "hello";
-        requestBody.queryInput.text.languageCode = "en";
+        //requestBody.queryInput.text = new TextInput();
+        //requestBody.queryInput.text.text = "hello";
+        //requestBody.queryInput.text.languageCode = "en";
 
         string jsonRequestBody = JsonUtility.ToJson(requestBody,true);
         Debug.Log(jsonRequestBody);

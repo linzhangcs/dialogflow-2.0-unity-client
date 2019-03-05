@@ -19,7 +19,10 @@ namespace JsonData
         public QueryInput queryInput;
         /*  
             string (bytes format)
-            Optional. The natural language speech audio to be processed. This field should be populated iff queryInput is set to an input audio config. A single request can contain up to 1 minute of speech audio data.
+            Optional. 
+            The natural language speech audio to be processed. 
+            This field should be populated if queryInput is set to an input audio config. 
+            A single request can contain up to 1 minute of speech audio data.
             A base64-encoded string.
         */
 
@@ -50,7 +53,7 @@ namespace JsonData
     [Serializable]
     public class QueryInput
     {
-        public TextInput text;
+        //public TextInput text;
         public InputAudioConfig audioConfig;
     }
     /*
@@ -70,7 +73,7 @@ namespace JsonData
     public class InputAudioConfig
     {
         public AudioEncoding audioEncoding;
-        public int sampleReateHertz;
+        public int sampleRateHertz;
         public String languageCode;
         public String[] phraseHints;
     }

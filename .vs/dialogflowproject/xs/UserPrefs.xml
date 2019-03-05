@@ -1,17 +1,24 @@
 ﻿<Properties StartupConfiguration="{3157A555-6016-2AC5-27B5-D98AFF91087F}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/JsonData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MicrophoneCapture.cs">
     <Files>
-      <File FileName="Assets/DialogflowAPIScript.cs" Line="59" Column="26" />
-      <File FileName="Assets/MicrophoneCapture.cs" Line="68" Column="1" />
-      <File FileName="../../magicWindows/ARCore/Assets/Plugins/visionClasses.cs" Line="41" Column="28" NotebookId="1" />
-      <File FileName="Assets/Plugins/JsonData.cs" Line="229" Column="9" NotebookId="1" />
+      <File FileName="Assets/DialogflowAPIScript.cs" Line="35" Column="25" />
+      <File FileName="Assets/MicrophoneCapture.cs" Line="157" Column="177" />
+      <File FileName="Assets/WavUtility.cs" Line="200" Column="33" />
+      <File FileName="../../magicWindows/ARCore/Assets/Plugins/visionClasses.cs" Line="25" Column="5" NotebookId="1" />
+      <File FileName="Assets/Plugins/JsonData.cs" Line="56" Column="11" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/linzhang/Documents/ITP/Fall2018/OSS/dialogflowproject/Assets/DialogflowAPIScript.cs" relfile="Assets/DialogflowAPIScript.cs" line="58" column="1" />
+      <Breakpoint file="/Users/linzhang/Documents/ITP/Fall2018/OSS/dialogflowproject/Assets/DialogflowAPIScript.cs" relfile="Assets/DialogflowAPIScript.cs" line="57" column="1" />
+      <Breakpoint file="/Users/linzhang/Documents/ITP/Fall2018/OSS/dialogflowproject/Assets/DialogflowAPIScript.cs" relfile="Assets/DialogflowAPIScript.cs" line="54" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../Assets/DialogflowAPIScript.cs" line="59" offsetX="1157" offsetY="1392" expression="content" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MultiItemStartupConfigurations />
 </Properties>
